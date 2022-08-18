@@ -1,0 +1,31 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Tile.gd" type="Script" id=1]
+[ext_resource path="res://ClickableArea.gd" type="Script" id=2]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 24, 24 )
+
+[node name="Tile" type="Polygon2D"]
+scale = Vector2( 0.25, 0.25 )
+polygon = PoolVector2Array( 0, 0, 50, 0, 50, 50, 0, 50 )
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_group_": true
+}
+alive_color = Color( 0.215686, 0.419608, 0.482353, 1 )
+dead_color = Color( 0.0917969, 0.119049, 0.183594, 1 )
+
+[node name="Border" type="Line2D" parent="."]
+points = PoolVector2Array( 0, 0, 50, 0, 50, 50, 0, 50, 0, 0 )
+width = 4.0
+default_color = Color( 0.458481, 0.494711, 0.505859, 1 )
+
+[node name="ClickableArea" type="Area2D" parent="."]
+script = ExtResource( 2 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ClickableArea"]
+position = Vector2( 25, 25 )
+shape = SubResource( 1 )
+
+[connection signal="pressed" from="ClickableArea" to="." method="_on_ClickableArea_pressed"]
