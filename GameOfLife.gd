@@ -20,11 +20,33 @@ func _ready():
 		updates_map[x].resize(map_size.y)
 		for y in range(map_size.y):
 			var tile : Tile = tile_scene.instance()
-			tile.set_dead()
+			add_child(tile)
 			tile.translate(Vector2(tile_width * x, tile_width * y))
 			map[x][y] = tile
 			updates_map[x][y] = null
-			add_child(tile)
+			
+
+func _process(delta):
+	switch_tile_state_on_mouse_press()
+	
+func switch_tile_state_on_mouse_press():
+	if not Input.is_action_just_pressed("switch_tile"):
+		return
+	
+	var map_min = Vector2.ZERO
+	var map_max = tile_width * map_size
+	
+	var mouse_pos = get_local_mouse_position()
+	var mouse_in_bounds = \
+		mouse_pos.x >= map_min.x and mouse_pos.y >= map_min.y and \
+		mouse_pos.x < map_max.x and mouse_pos.y < map_max.y
+	if not mouse_in_bounds:
+		return
+	
+	var tile_index = mouse_pos / tile_width
+	tile_index.x = floor(tile_index.x)
+	tile_index.y = floor(tile_index.y)
+	map[tile_index.x][tile_index.y].switch_state()
 
 # move game a step forward
 func _on_Timer_timeout():
