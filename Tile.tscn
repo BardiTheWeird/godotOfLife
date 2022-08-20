@@ -3,17 +3,17 @@
 [ext_resource path="res://Tile.gd" type="Script" id=1]
 
 [node name="Tile" type="Polygon2D"]
+scale = Vector2( 0.9, 0.9 )
 polygon = PoolVector2Array( 0, 0, 50, 0, 50, 50, 0, 50 )
 script = ExtResource( 1 )
 __meta__ = {
 "_edit_group_": true
 }
 alive_color = Color( 0.215686, 0.419608, 0.482353, 1 )
-dead_color = Color( 0.0917969, 0.119049, 0.183594, 1 )
+dead_color = Color( 0.0901961, 0.117647, 0.184314, 1 )
 
 [node name="Border" type="Line2D" parent="."]
+visible = false
 points = PoolVector2Array( 0, 0, 50, 0, 50, 50, 0, 50, 0, 0 )
 width = 2.0
 default_color = Color( 0.458481, 0.494711, 0.505859, 1 )
-
-[node name="Tween" type="Tween" parent="."]
