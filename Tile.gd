@@ -1,27 +1,25 @@
 extends Polygon2D
 class_name Tile
 
-export (Color) var alive_color
-export (Color) var dead_color
+export (Color) var alive_color : Color
+export (Color) var dead_color  : Color
+export (int) var max_time_to_live := 5
 
-var alive : bool = false
+# false -> dead; true -> alive
+var state : bool = false setget set_state
+var time_to_live := max_time_to_live
 
-func _ready():
-	set_dead()
+func set_state(value : bool) -> void:
+	state = value
+	var new_color := dead_color
+	if state:
+		new_color = alive_color
+		time_to_live = max_time_to_live
 
-func set_dead():
-	alive = false
-	tween_color(dead_color)
-
-func set_alive():
-	alive = true
-	tween_color(alive_color)
+	tween_color(new_color)
 
 func switch_state():
-	if alive:
-		set_dead()
-	else:
-		set_alive()
+	self.state = !state
 
 func tween_color(new_color : Color):
 	var tween := create_tween()\
