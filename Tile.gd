@@ -9,6 +9,9 @@ export (int) var max_time_to_live := 5
 var state : bool = false setget set_state
 var time_to_live := max_time_to_live
 
+func _ready():
+	color = dead_color
+
 func set_state(value : bool) -> void:
 	state = value
 	var new_color := dead_color

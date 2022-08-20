@@ -10,7 +10,7 @@ func set_tile_width(value) -> void:
 	
 onready var grid = $Grid
 onready var timer = $Timer
-
+onready var tiles_container = $Tiles
 
 # {index_x -> {index_y -> Tile}}
 var map = {}
@@ -63,7 +63,7 @@ func add_tile_to_map(x, y, initial_state=false) -> Tile:
 
 	var tile : Tile = tile_scene.instance()
 	map[x][y] = tile
-	add_child(tile)
+	tiles_container.add_child(tile)
 	tile.translate(Vector2(tile_width * x, tile_width * y))
 	tile.state = initial_state
 
@@ -71,7 +71,7 @@ func add_tile_to_map(x, y, initial_state=false) -> Tile:
 
 func remove_tile(x, y) -> void:
 	var tile = map[x][y]
-	remove_child(tile)
+	tiles_container.remove_child(tile)
 
 	map[x].erase(y)
 	if map[x].size() == 0:

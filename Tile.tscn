@@ -3,14 +3,14 @@
 [ext_resource path="res://Tile.gd" type="Script" id=1]
 
 [node name="Tile" type="Polygon2D"]
-scale = Vector2( 0.9, 0.9 )
+color = Color( 0.0901961, 0.117647, 0.184314, 1 )
 polygon = PoolVector2Array( 0, 0, 50, 0, 50, 50, 0, 50 )
 script = ExtResource( 1 )
 __meta__ = {
 "_edit_group_": true
 }
-alive_color = Color( 0.215686, 0.419608, 0.482353, 1 )
-dead_color = Color( 0.0901961, 0.117647, 0.184314, 1 )
+alive_color = Color( 0.776471, 0.780392, 0.219608, 1 )
+dead_color = Color( 0.117188, 0.117188, 0.117188, 1 )
 
 [node name="Border" type="Line2D" parent="."]
 visible = false
