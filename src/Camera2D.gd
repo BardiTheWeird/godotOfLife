@@ -7,7 +7,6 @@ var zoom_stepv : Vector2
 func set_zoom_step(value: float) -> void:
 	zoom_step = value
 	zoom_stepv = Vector2.ONE * zoom_step
-	print('zoom_stepv: %s' % zoom_stepv)
 
 var mouse_start_pos
 var screen_start_position
